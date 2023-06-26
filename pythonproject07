@@ -1,6 +1,6 @@
 import csv
 with open("worldcities.csv","r+") as datei:
-f = open('worldcities.csv', newline='')
+f = open('worldcities.csv', newline='')  #hallo
 
 cities_csv = csv.DictReader(f, delimiter=',')
 
