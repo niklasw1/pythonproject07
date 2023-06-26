@@ -1,5 +1,5 @@
 import csv
-with open("worldcities.csv","r+") as datei:
+with open("worldcities.csv","r+") as datei:%Moin
 f = open('worldcities.csv', newline='')
 
 cities_csv = csv.DictReader(f, delimiter=',')
