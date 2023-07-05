@@ -53,3 +53,60 @@ def main(): # hauptfunktion
 
 if __name__ == '__main__':
     main()
+
+
+
+Neu: 05,07,23
+
+
+import csv
+
+def datei_einlesen(datei_name):  # definition der funktion einlesen (benötigt datei_name)
+    daten = [] # liste der zu einlensede daten
+    with open(datei_name, 'r', encoding='utf-8') as datei: # datei öffnen und korrekt einlesen
+        reader = csv.reader(datei) # leser für csv datei
+        for row in reader: # gehe durch jede reihe der tabelle
+            daten.append(row) # füge die reihe zu der daten liste hinzu
+    return daten # daten liste zurückgeben
+
+def datei_ausgabe(datei_name, daten): # definition der funktion ausgabe (benötigt datei_name und daten)
+    with open(datei_name, 'w', newline='', encoding='utf-8') as datei: # datei erstellen und korrekt daten hinzufügen
+        writer = csv.writer(datei) # schreiber für csv datei
+        writer.writerows(daten) # hinzufügen der reihen
+
+
+
+def tabelle_anzeigen(data):
+    titel = data[0]
+    data = data[1:]
+
+    max_len = max(len(name) for name in titel)
+    
+    for row in data:
+        for name, value in zip(titel, row):
+            print(f'{name.ljust(max_len)} : {value}')
+        print("------------------------")
+    print()
+
+def main(): # hauptfunktion
+    datei_name = input("Geben Sie den Dateinamen der CSV-Datei ein: ")
+    daten = datei_einlesen(datei_name)
+    
+    print("Geben Sie Daten ein (Spalten durch Komma getrennt)")
+    print("Drücken Sie 'ENTER' um die Eingabe zu Stoppen")
+
+    while True: # Dauerschleife
+        benutzer_eingabe = input("Eingabe: ")
+        if benutzer_eingabe == "": # if abfrage ob das programm stoppen soll
+            break # Schleife wird abgebrochen
+        else: 
+            benutzer_daten = benutzer_eingabe.split(',') # benutze daten abfragen und durch ein komma spalten um für die zeilen
+            daten.append(benutzer_daten) # neue daten zu der eingelesenen csv datei hinzufügen
+    
+    ausgabe_datei = input("Geben Sie den Dateinamen für die Ausgabedatei ein: ")
+    datei_ausgabe(ausgabe_datei, daten)
+    
+    tabelle_anzeigen(daten)
+
+if __name__ == '__main__':
+    main()
