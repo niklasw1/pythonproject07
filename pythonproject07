@@ -10,7 +10,7 @@ for item in cities_csv:
 
 
 
-import csv #ist quasi eine Bibliothek damit csv richtig gelesen wird, zb csv.reader
+import csv
 
 def datei_einlesen(datei_name):  # definition der funktion einlesen (benötigt datei_name)
     daten = [] # liste der zu einlensede daten
@@ -59,7 +59,7 @@ if __name__ == '__main__':
 Neu: 05,07,23
 
 
-import csv
+import csv  #ist quasi eine Bibliothek damit csv richtig gelesen wird, zb csv.reader
 
 def datei_einlesen(datei_name):  # definition der funktion einlesen (benötigt datei_name)
     daten = [] # liste der zu einlensede daten
@@ -97,7 +97,7 @@ def main(): # hauptfunktion
 
     while True: # Dauerschleife
         benutzer_eingabe = input("Eingabe: ")
-        if benutzer_eingabe == "": # if abfrage ob das programm stoppen soll
+        if benutzer_eingabe == "": # if abfrage ob das programm stoppen soll, ausgelöst wird es durch eine "Leereingabe", also zwischen den ""-Zeichen das dort nichts steht und abgeschickt wird.
             break # Schleife wird abgebrochen
         else: 
             benutzer_daten = benutzer_eingabe.split(',') # benutze daten abfragen und durch ein komma spalten um für die zeilen
