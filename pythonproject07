@@ -10,7 +10,7 @@ for item in cities_csv:
 
 
 
-import csv
+import csv #ist quasi eine Bibliothek damit csv richtig gelesen wird, zb csv.reader
 
 def datei_einlesen(datei_name):  # definition der funktion einlesen (benötigt datei_name)
     daten = [] # liste der zu einlensede daten
