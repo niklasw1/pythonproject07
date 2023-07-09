@@ -110,3 +110,60 @@ def main(): # hauptfunktion
 
 if __name__ == '__main__':
     main()
+
+
+
+
+
+----------------------------------------------------------------
+
+import csv
+
+def read_file(file_name):
+    data = []
+    with open(file_name, 'r', encoding='utf-8') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            data.append(row)
+    return data
+
+def write_file(file_name, data):
+    with open(file_name, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerows(data)
+
+def display_table(data):
+    title = data[0]
+    data = data[1:]
+    
+    max_len = max(len(name) for name in title)
+    
+    for row in data:
+        for name, value in zip(title, row):
+            print(f'{name.ljust(max_len)} : {value}')
+        print("------------------------")
+    print()
+
+def main():
+    file_name = input("Enter the CSV file name: ")
+    data = read_file(file_name)
+    
+    print("Enter data (separated by commas)")
+    print("Press 'ENTER' to stop inputting")
+    
+    while True:
+        user_input = input("Input: ")
+        if user_input == "":
+            break
+        else:
+            user_data = user_input.split(',')
+            data.append(user_data)
+    
+    output_file = input("Enter the output file name: ")
+    write_file(output_file, data)
+    
+    display_table(data)
+
+if __name__ == '__main__':
+    main()
+    
