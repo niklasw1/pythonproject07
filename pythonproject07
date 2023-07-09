@@ -168,7 +168,7 @@ if __name__ == '__main__':
     main()
     
 ---------------------------------------------
-import csv
+import csv                                     # Bibliothek damit csv richtig gelesen wird, zb csv.reader
 
 def read_file(file_name):
     data = []                                  # Liste zur Speicherung der eingelesenen Daten
@@ -206,8 +206,7 @@ def main():
     
     while True:
         user_input = input("Eingabe: ")
-        if user_input == "":
-            break
+        if user_input == "":                            # if abfrage ob das Programm stoppen soll, ausgelöst wird es durch eine "Leereingabe", also zwischen den ""-Zeichen.
         else:
             user_data = user_input.split(',')
             data.append(user_data)
