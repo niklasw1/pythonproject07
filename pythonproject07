@@ -167,8 +167,8 @@ def main():
 if __name__ == '__main__':
     main()
     
----------------------------------------------
-import csv                                     # Bibliothek damit csv richtig gelesen wird, zb csv.reader
+--------------------------------
+import csv
 
 def read_file(file_name):
     data = []                                  # Liste zur Speicherung der eingelesenen Daten
@@ -201,12 +201,13 @@ def main():
     file_name = input("Geben Sie den Dateinamen der CSV-Datei ein: ")
     data = read_file(file_name)
     
-    print("Geben Sie Daten ein (durch Kommas getrennt)")
+    print("Sie können nun Daten ergänzen. Diese werden in der Ausgabedatei am Ende hinzugefügt und die Daten werden tabellarisch angezeigt.\nGeben Sie Daten ein in folgendem Format: city,city_ascii,lat,lng,country,iso2,iso3,admin_name,capital,population,id")
     print("Drücken Sie 'ENTER', um die Eingabe zu beenden")
     
     while True:
         user_input = input("Eingabe: ")
-        if user_input == "":                            # if abfrage ob das Programm stoppen soll, ausgelöst wird es durch eine "Leereingabe", also zwischen den ""-Zeichen.
+        if user_input == "":
+            break
         else:
             user_data = user_input.split(',')
             data.append(user_data)
