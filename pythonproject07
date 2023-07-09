@@ -167,3 +167,55 @@ def main():
 if __name__ == '__main__':
     main()
     
+---------------------------------------------
+import csv
+
+def read_file(file_name):
+    data = []                                  # Liste zur Speicherung der eingelesenen Daten
+    with open(file_name, 'r', encoding='utf-8') as file:
+        reader = csv.reader(file)              # CSV-Reader zum Lesen der Datei
+        for row in reader:                     # Schleife zum Durchgehen jeder Zeile in der Tabelle
+            data.append(row)                   # Füge die Zeile zur Liste der Daten hinzu
+    return data                                # Gib die Liste der Daten zurück
+
+def write_file(file_name, data):
+    with open(file_name, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)              # CSV-Writer zum Schreiben der Daten
+        writer.writerows(data)                 # Schreibe die Zeilen in die Datei
+
+def display_table(data):
+    title = data[0]                                     # Die erste Zeile enthält die Spaltenüberschriften
+    data = data[1:]                                      # Der Rest der Daten ohne Spaltenüberschriften
+    
+                                                       # Ermittle die maximale Länge einer Spaltenüberschrift
+    max_len = max(len(name) for name in title)
+    
+                                                       # Iteriere über jede Zeile und gebe die Spaltenüberschrift und den Wert aus
+    for row in data:
+        for name, value in zip(title, row):
+            print(f'{name.ljust(max_len)} : {value}')  # Linksbündige Ausgabe
+        print("------------------------")              # Trennlinie zwischen den Zeilen
+    print()                                            # Leere Zeile für die Ausgabe
+
+def main():
+    file_name = input("Geben Sie den Dateinamen der CSV-Datei ein: ")
+    data = read_file(file_name)
+    
+    print("Geben Sie Daten ein (durch Kommas getrennt)")
+    print("Drücken Sie 'ENTER', um die Eingabe zu beenden")
+    
+    while True:
+        user_input = input("Eingabe: ")
+        if user_input == "":
+            break
+        else:
+            user_data = user_input.split(',')
+            data.append(user_data)
+    
+    output_file = input("Geben Sie den Dateinamen für die Ausgabedatei ein: ")
+    write_file(output_file, data)
+    
+    display_table(data)
+
+if __name__ == '__main__':
+    main()
